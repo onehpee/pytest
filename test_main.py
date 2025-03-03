@@ -1,4 +1,4 @@
-from main import get_food, add, divide
+from main import get_food, add, divide, User
 import pytest
 
 def test_get_food():
@@ -14,4 +14,21 @@ def test_add():
 def test_divide():
     with pytest.raises(ValueError, match="Cannot divide by zero"):
         divide(4, 0)
+        
+        
+@pytest.fixture
+def user():
+    """Creates a freash instance of User before each test."""
+    return user()
+
+def test_add_user(user):
+    assert user.add_user("john_doe", "john@example.com") == True
+    assert user.add_user("john_doe") == "john@example.com"
+    
+    
+def test_add_duplicate_user(user):
+    user.add_user("john_doe", "john@example.com")
+    with pytest.raises(ValueError):
+        user.add_user("john_doe", "john@example.com")
+    
     
