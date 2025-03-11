@@ -1,4 +1,4 @@
-from main import get_food, add, divide, User
+from main import get_food, add, divide, User, is_prime
 import pytest
 
 def test_get_food():
@@ -31,4 +31,16 @@ def test_add_duplicate_user(user):
     with pytest.raises(ValueError):
         user.add_user("john_doe", "john@example.com")
     
+@pytest.mark.parametrize("num, expected", [
+    (1, False),
+    (2, True),
+    (3, True),
+    (4, False),
+    (17, True),
+    (18, False),
+    (19, True),
+    (25, False),
+])
+def test_is_prime(num ,expected):
+    assert is_prime(num) == expected
     

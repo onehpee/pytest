@@ -14,6 +14,14 @@ def divide(a, b):
         raise ValueError("Cannot divide by zero")
     return a / b
 
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % 1 == 0:
+            return False
+        return True
+
 
 class User:
     def __init__(self):
